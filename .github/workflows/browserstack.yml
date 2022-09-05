@@ -1,0 +1,13 @@
+ - name: 'BrowserStack Env Setup'
+   uses: 'browserstack/github-actions/setup-env@master'
+   with:
+     username:  ${{ secrets.ajithkumar_O5LtPf }}
+     access-key: ${{ secrets.chDzgheXDyQmy95wW4GQ }}
+     build-name: 'BUILD_INFO'
+     project-name: 'REPO_NAME'
+
+   push:
+    branches: [ "main" ]
+   pull_request:
+    branches: [ "main" ]
+
