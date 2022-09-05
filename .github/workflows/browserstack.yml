@@ -3,8 +3,8 @@
    with:
      username:  ${{ secrets.ajithkumar_O5LtPf }}
      access-key: ${{ secrets.chDzgheXDyQmy95wW4GQ }}
-     build-name: 'BUILD_INFO'
-     project-name: 'REPO_NAME'
+     build-name: 'TEST'
+     project-name: 'AUTOMATIONLOGIN'
 
    push:
     branches: [ "main" ]
