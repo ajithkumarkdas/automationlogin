@@ -1,9 +1,15 @@
-name: 'BrowserStack Env Setup'
-uses: 'browserstack/github-actions/setup-env@master'
-with:
-     username:  ${{ secrets.ajithkumar_O5LtPf }}
-     access-key: ${{ secrets.chDzgheXDyQmy95wW4GQ }}
-     build-name: 'TEST'
-     project-name: 'AUTOMATIONLOGIN'
-
-
+name: Browserstack CI Integration
+on: [push]
+env:
+        BROWSERSTACK_ACCESS_KEY: "${{ secrets.chDzgheXDyQmy95wW4GQ }}"
+        BROWSERSTACK_USERNAME: "${{ secrets.ajithkumar_O5LtPf }}"
+jobs:
+  test:
+    name: browserstack test
+    runs-on: windows-latest
+    steps:
+      - name: Browserstack actions
+        uses:  browserstack/github-actions@v1.0.1
+        with:
+          username: ajithkumar_O5LtPf
+          access-key: chDzgheXDyQmy95wW4GQ     
