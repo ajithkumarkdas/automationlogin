@@ -1,13 +1,9 @@
- - name: 'BrowserStack Env Setup'
-   uses: 'browserstack/github-actions/setup-env@master'
-   with:
+name: 'BrowserStack Env Setup'
+uses: 'browserstack/github-actions/setup-env@master'
+with:
      username:  ${{ secrets.ajithkumar_O5LtPf }}
      access-key: ${{ secrets.chDzgheXDyQmy95wW4GQ }}
      build-name: 'TEST'
      project-name: 'AUTOMATIONLOGIN'
 
-   push:
-    branches: [ "main" ]
-   pull_request:
-    branches: [ "main" ]
 
