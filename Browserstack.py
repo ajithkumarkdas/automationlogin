@@ -2,24 +2,32 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from getpass import getpass
 
-BROWSERSTACK_URL = 'https://ajithkumar_O5LtPf:chDzgheXDyQmy95wW4GQ@hub-cloud.browserstack.com/wd/hub'
+userName = os.environ['ajithkumar_O5LtPf']
+accessKey = os.environ['chDzgheXDyQmy95wW4GQ']
+localIdentifier = os.environ['BROWSERSTACK_LOCAL_IDENTIFIER']
+buildName = os.environ['Build 1']
+projectName = os.environ['Sample sandbox project']
 
 desired_cap = {
 'bstack:options' : {
 "os" : "Windows",
 "osVersion" : "10",
-"projectName" : "Sample sandbox project",
-"buildName" : "Build #1",
-"sessionName" : "My First Test",
+"buildName" : "BStack Build Name: " + buildName,
+"projectName" : "BStack Project Name: " + projectName,
+ "localIdentifier": localIdentifier,
+        "seleniumVersion" : "4.0.0",
+        "userName": ajithkumar_O5LtPf,
+        "accessKey": chDzgheXDyQmy95wW4GQ
 },
 "browserName" : "Chrome",
 "browserVersion" : "latest",
 }
 
+options = ChromeOptions()
+options.set_capability('bstack:options', bstack_options)
 driver = webdriver.Remote(
-    command_executor=BROWSERSTACK_URL,
-    desired_capabilities=desired_cap
-)
+    command_executor="https://hub.browserstack.com/wd/hub",
+    options=options)
 
 driver.get("https://www.amazon.in")
 
@@ -35,5 +43,5 @@ password_textbox = driver.find_element_by_id("ap_password")
 password_textbox.send_keys(password)
 SignIn_button = driver.find_element_by_id("auth-signin-button-announce")
 SignIn_button.submit()
-
+print(driver.title)
 driver.quit()
