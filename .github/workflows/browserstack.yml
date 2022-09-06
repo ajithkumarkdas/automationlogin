@@ -1,15 +1,19 @@
-name: Browserstack CI Integration
-on: [push]
-env:
-        BROWSERSTACK_ACCESS_KEY: "${{ secrets.chDzgheXDyQmy95wW4GQ }}"
-        BROWSERSTACK_USERNAME: "${{ secrets.ajithkumar_O5LtPf }}"
+name: 'BrowserStack Test'
+on: [push, pull_request]
 jobs:
-  test:
-    name: browserstack test
-    runs-on: windows-latest
+  ubuntu-job:
+    name: 'BrowserStack Test on Ubuntu'
+    runs-on: ubuntu-latest  # Can be self-hosted runner also
     steps:
-      - name: Browserstack actions
-        uses:  browserstack/github-actions@v1.0.1
+
+      - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
+        uses: browserstack/github-actions/setup-env@master
         with:
-          username: ajithkumar_O5LtPf
-          access-key: chDzgheXDyQmy95wW4GQ     
+          username:  ${{ secrets.chDzgheXDyQmy95wW4GQ }}
+          access-key: ${{ secrets.ajithkumar_O5LtPf }}
+
+      - name: 'BrowserStack Local Tunnel Setup'  # Invokes the setup-local action
+        uses: browserstack/github-actions/setup-local@master
+        with:
+          local-testing: start
+          local-identifier: random
